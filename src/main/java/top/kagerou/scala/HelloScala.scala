@@ -4,7 +4,9 @@ object HelloScala {
   def main(args: Array[String]): Unit = {
     val list = List("May","January","February","March", "April", "June")
     list.foreach( t => {
-      println((t.hashCode % 7))
+      println {
+        t.hashCode % 7
+      }
     })
   }
 }

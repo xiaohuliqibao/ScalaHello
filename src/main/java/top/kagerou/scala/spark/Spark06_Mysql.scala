@@ -10,8 +10,7 @@ import java.util.Properties
 object Spark06_Mysql {
   def main(args: Array[String]): Unit = {
 
-    val sparkConf = new SparkConf().setMaster("local").setAppName("RDD_Transformations")
-    val sc = new SparkContext(sparkConf)
+    val sparkConf = new SparkConf().setMaster("local").setAppName("Spark_Mysql")
     val ss = SparkSession.builder.config(sparkConf).getOrCreate()
     val url = "jdbc:mysql://??.mysql.cn-chengdu.rds.aliyuncs.com:3306/langbao?useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false"
     val table = "group_message"
@@ -24,7 +23,7 @@ object Spark06_Mysql {
     var groupMessage: DataFrame = ss.read.jdbc(url, table, properties)
     groupMessage.show()
 
-    sc.stop()
+    ss.close()
 
   }
 }
